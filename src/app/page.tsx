@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import * as React from 'react';
+import { SignedIn, SignedOut, SignInButton, SignUpButton, useUser, UserButton } from '@clerk/nextjs';
 
 interface UseAutoResizeTextareaProps {
   minHeight: number;
@@ -156,8 +157,10 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
 );
 Textarea.displayName = 'Textarea';
 
-export default function AnimatedAIChat(userName: string) {
-  userName = 'Pierre';
+function AuthenticatedChat() {
+  const { user } = useUser();
+  const userName = user?.firstName || user?.username || 'Usuário';
+
   const [value, setValue] = useState('');
   const [messages, setMessages] = useState<Message[]>([]);
   const [attachments, setAttachments] = useState<string[]>([]);
@@ -396,6 +399,11 @@ export default function AnimatedAIChat(userName: string) {
         </div>
 
         <div className="relative mx-auto w-full max-w-4xl h-full flex flex-col">
+          {/* User menu */}
+          <div className="absolute top-4 right-4 z-20">
+            <UserButton />
+          </div>
+
           {!hasStartedChat ? (
             <motion.div
               className="relative z-10 space-y-8 flex-1 flex flex-col justify-center p-6 overflow-y-auto"
@@ -403,15 +411,23 @@ export default function AnimatedAIChat(userName: string) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
             >
-              <div className="space-y-6 text-center">
+              <div className="space-y-3 text-center">
                 <motion.h1
-                  className="text-4xl md:text-5xl font-regular tracking-tight bg-gradient-to-r from-foreground via-foreground/90 to-foreground/70 bg-clip-text text-transparent"
+                  className="text-4xl md:text-5xl font-regular"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.5 }}
                 >
-                  Olá, {userName}!
+                  Olá, <span className='tracking-tight bg-gradient-to-r from-[#d97757] via-[#d97757]/90 to-[#d97757]/70 bg-clip-text text-transparent'>{userName}!</span> <br />
                 </motion.h1>
+                <motion.p
+                  className="text-3xl text-muted-white"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6, duration: 0.5 }}
+                >
+                  Como posso ajudar você hoje?
+                </motion.p>
                 <motion.p
                   className="text-sm text-muted-foreground"
                   initial={{ opacity: 0, y: 10 }}
@@ -520,95 +536,95 @@ export default function AnimatedAIChat(userName: string) {
           >
             <div className="mx-auto w-full max-w-4xl">
               <div className="border-border bg-card/80 relative rounded-2xl border shadow-2xl backdrop-blur-2xl">
-              <div className="relative flex items-end gap-3 p-4">
-                {/* Command Palette */}
-                <AnimatePresence>
-                  {showCommandPalette && (
-                    <motion.div
-                      ref={commandPaletteRef}
-                      className="border-border bg-card/95 absolute bottom-full left-0 right-0 mb-2 rounded-lg border shadow-lg backdrop-blur-xl"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                    >
-                      <div className="p-2">
-                        {commandSuggestions.map((suggestion, index) => (
-                          <motion.button
-                            key={index}
-                            onClick={() => selectCommandSuggestion(index)}
-                            className={cn(
-                              'hover:bg-accent w-full rounded-md p-3 text-left transition-colors',
-                              activeSuggestion === index && 'bg-accent',
-                            )}
-                            whileHover={{ x: 4 }}
-                          >
-                            <div className="flex items-center gap-3">
-                              <div className="text-primary">{suggestion.icon}</div>
-                              <div className="flex-1">
-                                <div className="text-sm font-medium">
-                                  {suggestion.label}
+                <div className="relative flex items-end gap-3 p-4">
+                  {/* Command Palette */}
+                  <AnimatePresence>
+                    {showCommandPalette && (
+                      <motion.div
+                        ref={commandPaletteRef}
+                        className="border-border bg-card/95 absolute bottom-full left-0 right-0 mb-2 rounded-lg border shadow-lg backdrop-blur-xl"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                      >
+                        <div className="p-2">
+                          {commandSuggestions.map((suggestion, index) => (
+                            <motion.button
+                              key={index}
+                              onClick={() => selectCommandSuggestion(index)}
+                              className={cn(
+                                'hover:bg-accent w-full rounded-md p-3 text-left transition-colors',
+                                activeSuggestion === index && 'bg-accent',
+                              )}
+                              whileHover={{ x: 4 }}
+                            >
+                              <div className="flex items-center gap-3">
+                                <div className="text-primary">{suggestion.icon}</div>
+                                <div className="flex-1">
+                                  <div className="text-sm font-medium">
+                                    {suggestion.label}
+                                  </div>
+                                  <div className="text-muted-foreground text-xs">
+                                    {suggestion.description}
+                                  </div>
                                 </div>
                                 <div className="text-muted-foreground text-xs">
-                                  {suggestion.description}
+                                  {suggestion.prefix}
                                 </div>
                               </div>
-                              <div className="text-muted-foreground text-xs">
-                                {suggestion.prefix}
-                              </div>
-                            </div>
-                          </motion.button>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-                {/* Attachments */}
-                {attachments.length > 0 && (
-                  <div className="mb-2 flex flex-wrap gap-2">
-                    {attachments.map((attachment, index) => (
-                      <motion.div
-                        key={index}
-                        className="bg-accent text-accent-foreground flex items-center gap-2 rounded-md px-2 py-1 text-sm"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.8 }}
-                      >
-                        <Paperclip className="h-3 w-3" />
-                        <span>{attachment}</span>
-                        <button
-                          onClick={() => removeAttachment(index)}
-                          className="hover:text-destructive ml-1"
-                        >
-                          <XIcon className="h-3 w-3" />
-                        </button>
+                            </motion.button>
+                          ))}
+                        </div>
                       </motion.div>
-                    ))}
+                    )}
+                  </AnimatePresence>
+
+                  {/* Attachments */}
+                  {attachments.length > 0 && (
+                    <div className="mb-2 flex flex-wrap gap-2">
+                      {attachments.map((attachment, index) => (
+                        <motion.div
+                          key={index}
+                          className="bg-accent text-accent-foreground flex items-center gap-2 rounded-md px-2 py-1 text-sm"
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.8 }}
+                        >
+                          <Paperclip className="h-3 w-3" />
+                          <span>{attachment}</span>
+                          <button
+                            onClick={() => removeAttachment(index)}
+                            className="hover:text-destructive ml-1"
+                          >
+                            <XIcon className="h-3 w-3" />
+                          </button>
+                        </motion.div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Textarea */}
+                  <div className="flex-1">
+                    <Textarea
+                      ref={textareaRef}
+                      value={value}
+                      onChange={(e) => {
+                        setValue(e.target.value);
+                        adjustHeight();
+                      }}
+                      onKeyDown={handleKeyDown}
+                      onFocus={() => setInputFocused(true)}
+                      onBlur={() => setInputFocused(false)}
+                      placeholder="Tire sua dúvida..."
+                      className="min-h-[40px] resize-none border-0 bg-transparent p-0 text-sm focus-visible:ring-0 focus-visible:ring-offset-0"
+                      containerClassName="flex-1"
+                      showRing={false}
+                    />
                   </div>
-                )}
 
-                {/* Textarea */}
-                <div className="flex-1">
-                  <Textarea
-                    ref={textareaRef}
-                    value={value}
-                    onChange={(e) => {
-                      setValue(e.target.value);
-                      adjustHeight();
-                    }}
-                    onKeyDown={handleKeyDown}
-                    onFocus={() => setInputFocused(true)}
-                    onBlur={() => setInputFocused(false)}
-                    placeholder="Tire sua dúvida..."
-                    className="min-h-[40px] resize-none border-0 bg-transparent p-0 text-sm focus-visible:ring-0 focus-visible:ring-offset-0"
-                    containerClassName="flex-1"
-                    showRing={false}
-                  />
-                </div>
-
-                {/* Action buttons */}
-                <div className="flex items-end gap-2">
-                  {/* <motion.button
+                  {/* Action buttons */}
+                  <div className="flex items-end gap-2">
+                    {/* <motion.button
                     onClick={handleAttachFile}
                     className="text-muted-foreground hover:text-foreground flex h-8 w-8 items-center justify-center rounded-md transition-colors"
                     whileHover={{ scale: 1.1 }}
@@ -617,55 +633,55 @@ export default function AnimatedAIChat(userName: string) {
                     <Paperclip className="h-4 w-4" />
                   </motion.button> */}
 
-                  <motion.button
-                    onClick={toggleTheme}
-                    className="text-muted-foreground hover:text-foreground flex h-8 w-8 items-center justify-center rounded-md transition-colors"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    <motion.div
-                      animate={{ rotate: isDarkMode ? 0 : 180 }}
-                      transition={{ duration: 0.3 }}
+                    <motion.button
+                      onClick={toggleTheme}
+                      className="text-muted-foreground hover:text-foreground flex h-8 w-8 items-center justify-center rounded-md transition-colors"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
                     >
-                      {isDarkMode ? (
-                        <Sun className="h-4 w-4" />
-                      ) : (
-                        <Moon className="h-4 w-4" />
-                      )}
-                    </motion.div>
-                  </motion.button>
+                      <motion.div
+                        animate={{ rotate: isDarkMode ? 0 : 180 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        {isDarkMode ? (
+                          <Sun className="h-4 w-4" />
+                        ) : (
+                          <Moon className="h-4 w-4" />
+                        )}
+                      </motion.div>
+                    </motion.button>
 
-                  <motion.button
-                    onClick={handleSendMessage}
-                    disabled={!value.trim() || isPending}
-                    className="bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50 flex h-8 w-8 items-center justify-center rounded-md transition-colors disabled:cursor-not-allowed"
-                    whileHover={{ scale: value.trim() ? 1.1 : 1 }}
-                    whileTap={{ scale: value.trim() ? 0.9 : 1 }}
-                  >
-                    {isPending ? (
-                      <LoaderIcon className="h-4 w-4 animate-spin" />
-                    ) : (
-                      <SendIcon className="h-4 w-4" />
-                    )}
-                  </motion.button>
+                    <motion.button
+                      onClick={handleSendMessage}
+                      disabled={!value.trim() || isPending}
+                      className="bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50 flex h-8 w-8 items-center justify-center rounded-md transition-colors disabled:cursor-not-allowed"
+                      whileHover={{ scale: value.trim() ? 1.1 : 1 }}
+                      whileTap={{ scale: value.trim() ? 0.9 : 1 }}
+                    >
+                      {isPending ? (
+                        <LoaderIcon className="h-4 w-4 animate-spin" />
+                      ) : (
+                        <SendIcon className="h-4 w-4" />
+                      )}
+                    </motion.button>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Recent command notification */}
-            <AnimatePresence>
-              {recentCommand && (
-                <motion.div
-                  className="bg-accent text-accent-foreground mt-2 rounded-md px-3 py-1 text-sm"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                >
-                  <Sparkles className="mr-2 inline h-3 w-3" />
-                  Comando aplicado: {recentCommand}
-                </motion.div>
-              )}
-            </AnimatePresence>
+              {/* Recent command notification */}
+              <AnimatePresence>
+                {recentCommand && (
+                  <motion.div
+                    className="bg-accent text-accent-foreground mt-2 rounded-md px-3 py-1 text-sm"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                  >
+                    <Sparkles className="mr-2 inline h-3 w-3" />
+                    Comando aplicado: {recentCommand}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </motion.div>
         </div>
@@ -735,5 +751,68 @@ if (typeof document !== 'undefined') {
   document.head.appendChild(style);
 }
 
+function AuthenticationScreen() {
+  return (
+    <div className="flex w-screen h-screen overflow-hidden">
+      <div className="text-foreground relative flex h-full w-full flex-col items-center justify-center overflow-hidden bg-transparent">
+        <div className="absolute inset-0 h-full w-full overflow-hidden">
+          <div className="bg-primary/10 absolute top-0 left-1/4 h-96 w-96 animate-pulse rounded-full mix-blend-normal blur-[128px] filter" />
+          <div className="bg-secondary/10 absolute right-1/4 bottom-0 h-96 w-96 animate-pulse rounded-full mix-blend-normal blur-[128px] filter delay-700" />
+          <div className="bg-primary/10 absolute top-1/4 right-1/3 h-64 w-64 animate-pulse rounded-full mix-blend-normal blur-[96px] filter delay-1000" />
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="relative z-10 text-center space-y-8 max-w-md mx-auto px-6"
+        >
+          <div className="space-y-4">
+            <h1 className="text-4xl font-bold tracking-tight">
+              Bem-vindo ao Oracle
+            </h1>
+            <p className="text-lg text-muted-foreground">
+              Seu assistente de IA para processos internos
+            </p>
+            <p className="text-sm text-muted-foreground/80">
+              Faça login para começar a conversar
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <SignInButton>
+              <button className="bg-transparent border border-primary text-primary hover:bg-primary hover:text-primary-foreground rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-6 sm:px-8 cursor-pointer transition-all duration-200">
+                Entrar
+              </button>
+            </SignInButton>
+
+            <SignUpButton>
+              <button className="bg-[#d97757] text-white hover:bg-[#d97857d3] rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-6 sm:px-8 cursor-pointer transition-all duration-200">
+                Criar Conta
+              </button>
+            </SignUpButton>
+          </div>
+
+          <div className="mt-8 text-xs text-muted-foreground/60">
+            Desenvolvido por pierrerrrr
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  );
+}
+
+export default function AnimatedAIChat() {
+  return (
+    <>
+      <SignedOut>
+        <AuthenticationScreen />
+      </SignedOut>
+      <SignedIn>
+        <AuthenticatedChat />
+      </SignedIn>
+    </>
+  );
+}
 
 // WIP: DEIXAR A TEXT AREA FIXED
