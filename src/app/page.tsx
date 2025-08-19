@@ -557,7 +557,7 @@ export default function AnimatedAIChat(userName: string) {
                   <Sparkles className="text-primary h-4 w-4" />
                 </div>
                 <div className="text-muted-foreground flex items-center gap-2 text-sm">
-                  <span>Thinking</span>
+                  <span>Procurando uma resposta</span>
                   <TypingDots />
                 </div>
               </div>
