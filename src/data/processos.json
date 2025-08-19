@@ -1,0 +1,52 @@
+{
+  "processos": [
+    {
+      "id": "art_alteracao",
+      "titulo": "Como criar tarefa de alteração de arte",
+      "categoria": "Arte e Design",
+      "tags": ["arte", "alteração", "tarefa", "design", "criação", "criar", "alterar"],
+      "pergunta": "Como criar a tarefa de alteração de arte?",
+      "resposta": "Para criar uma tarefa de alteração de arte, siga estes passos:\n\n1) **Acesse o sistema interno** de gestão de projetos\n2) **Navegue até a seção 'Solicitações'** no menu lateral\n3) **Clique em 'Nova Solicitação'** e selecione 'Alteração de Arte'\n4) **Preencha o formulário** com:\n   • Título da peça\n   • Descrição detalhada da alteração\n   • Prazo desejado\n   • Anexe a arte original\n5) **Defina a prioridade** (baixa, média, alta)\n6) **Submeta a solicitação**\n\nO prazo médio de execução é de **2-3 dias úteis**."
+    },
+    {
+      "id": "email_marketing_prazo",
+      "titulo": "Prazo de produção de e-mail marketing",
+      "categoria": "Marketing Digital",
+      "tags": ["email", "marketing", "prazo", "produção", "tempo", "dias", "quanto", "demora"],
+      "pergunta": "Quantos dias o e-mail marketing leva para ser produzido?",
+      "resposta": "A produção de e-mail marketing leva em média **3 a 5 dias úteis**, considerando:\n\n**1º dia** - Briefing e aprovação do conceito\n**2º-3º dia** - Criação do layout e conteúdo\n**4º dia** - Revisões e ajustes\n**5º dia** - Aprovação final e programação\n\nPara campanhas complexas ou com muitas revisões, o prazo pode se estender para até **7 dias úteis**.\n\n💡 **Recomendamos solicitar com antecedência mínima de 1 semana.**"
+    },
+    {
+      "id": "ga4_acesso",
+      "titulo": "Solicitar acesso ao Google Analytics 4",
+      "categoria": "Analytics",
+      "tags": ["ga4", "google analytics", "acesso", "permissão", "analytics", "solicitar", "pedir"],
+      "pergunta": "Como solicitar acesso ao GA4?",
+      "resposta": "Para solicitar acesso ao Google Analytics 4 (GA4), envie um e-mail para **analytics@empresa.com** com as seguintes informações:\n\n**Informações necessárias:**\n1) Nome completo\n2) Departamento/área\n3) Cargo/função\n4) Justificativa para o acesso (projetos que utilizará)\n5) Nível de permissão necessário:\n   • Visualizador\n   • Editor\n   • Administrador\n\nO time de Analytics avaliará a solicitação em até **2 dias úteis** e enviará as instruções de acesso por e-mail."
+    },
+    {
+      "id": "suporte_ti",
+      "titulo": "Como abrir chamado no suporte de TI",
+      "categoria": "Tecnologia da Informação",
+      "tags": ["suporte", "ti", "chamado", "técnico", "problema", "abrir", "help", "ajuda"],
+      "pergunta": "Como abrir um chamado no suporte de TI?",
+      "resposta": "Para abrir um chamado no suporte de TI:\n\n**Passo a passo:**\n1) Acesse o portal interno em **suporte.empresa.com**\n2) Faça login com suas credenciais corporativas\n3) Clique em **'Novo Chamado'**\n4) Selecione a categoria do problema:\n   • Hardware\n   • Software\n   • Rede\n   • Acesso\n5) Descreva detalhadamente o problema (inclua prints quando possível)\n6) Defina a urgência\n7) Submeta o chamado\n\n**SLAs de Atendimento:**\n• **Crítico**: 2 horas\n• **Alto**: 4 horas\n• **Médio**: 1 dia\n• **Baixo**: 3 dias\n\nVocê receberá um número de protocolo por e-mail."
+    },
+    {
+      "id": "ferias_solicitar",
+      "titulo": "Como solicitar férias",
+      "categoria": "Recursos Humanos",
+      "tags": ["férias", "solicitar", "rh", "aprovação", "descanso", "pedir", "vacation"],
+      "pergunta": "Como solicitar férias?",
+      "resposta": "Para solicitar férias:\n\n**Processo:**\n1) Acesse o sistema de RH (**rh.empresa.com**)\n2) Vá em **'Meus Benefícios' > 'Férias'**\n3) Clique em **'Nova Solicitação'**\n4) Escolha o período desejado (mínimo 5 dias corridos)\n5) Verifique seu saldo disponível\n6) Adicione observações se necessário\n7) Envie para aprovação do gestor direto\n\n**Prazos importantes:**\n• Solicitação deve ser feita com **antecedência mínima de 30 dias**\n• Após aprovação do gestor, o RH tem até **3 dias** para validação final\n\n✅ **Dica**: Verifique sempre seu saldo antes de solicitar!"
+    },
+    {
+      "id": "vpn_acesso",
+      "titulo": "Como configurar acesso VPN",
+      "categoria": "Tecnologia da Informação",
+      "tags": ["vpn", "acesso", "remoto", "configurar", "conexão", "home office", "trabalho"],
+      "pergunta": "Como configurar a VPN para trabalho remoto?",
+      "resposta": "Para configurar o acesso VPN:\n\n**Pré-requisitos:**\n• Aprovação do gestor para trabalho remoto\n• Solicitação aprovada pelo TI\n\n**Configuração:**\n1) Baixe o cliente VPN no portal interno\n2) Instale seguindo as instruções específicas do seu SO\n3) Use suas credenciais corporativas para login\n4) Conecte-se ao servidor da empresa\n\n**Suporte:**\nEm caso de problemas, abra um chamado no TI informando:\n• Sistema operacional\n• Mensagem de erro (se houver)\n• Prints da tela\n\n⚠️ **Importante**: Nunca compartilhe suas credenciais VPN."
+    }
+  ]
+}

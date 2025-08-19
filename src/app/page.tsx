@@ -184,20 +184,38 @@ function AuthenticatedChat() {
     {
       icon: <ImageIcon className="h-4 w-4" />,
       label: 'Como criar a tarefa de alteração de arte?',
-      description: 'Explique como criar uma tarefa de alteração de arte',
-      prefix: '/alt',
+      description: 'Processo para solicitar alterações em materiais visuais',
+      prefix: '/arte',
     },
     {
       icon: <Figma className="h-4 w-4" />,
       label: 'Quantos dias o e-mail marketing leva para ser produzido?',
-      description: 'Explique quantos dias leva para produzir um e-mail marketing',
-      prefix: '/figma',
+      description: 'Prazos e etapas da produção de campanhas de email',
+      prefix: '/email',
     },
     {
       icon: <MonitorIcon className="h-4 w-4" />,
-      label: 'Acessos ao GA4',
-      description: 'Informar para quem solciitar o acesso ao GA4',
-      prefix: '/page',
+      label: 'Como solicitar acesso ao GA4?',
+      description: 'Processo para obter permissões no Google Analytics',
+      prefix: '/ga4',
+    },
+    {
+      icon: <MonitorIcon className="h-4 w-4" />,
+      label: 'Como abrir chamado no suporte de TI?',
+      description: 'Procedimentos para solicitar suporte técnico',
+      prefix: '/ti',
+    },
+    {
+      icon: <User className="h-4 w-4" />,
+      label: 'Como solicitar férias?',
+      description: 'Processo para requisitar período de descanso',
+      prefix: '/ferias',
+    },
+    {
+      icon: <MonitorIcon className="h-4 w-4" />,
+      label: 'Como configurar acesso VPN?',
+      description: 'Instruções para trabalho remoto via VPN',
+      prefix: '/vpn',
     },
   ];
 
@@ -309,7 +327,7 @@ function AuthenticatedChat() {
     }
   };
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (value.trim()) {
       const userMessage: Message = {
         id: Date.now().toString(),
@@ -320,37 +338,57 @@ function AuthenticatedChat() {
 
       setMessages(prev => [...prev, userMessage]);
       setHasStartedChat(true);
+      const currentMessage = value.trim();
       setValue('');
       adjustHeight(true);
 
-      // mock da resposta da IA - provisório
       setIsTyping(true);
 
-      setTimeout(() => {
-        const aiResponse: Message = {
+      try {
+        const response = await fetch('/api/assistant', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ message: currentMessage }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          const aiResponse: Message = {
+            id: (Date.now() + 1).toString(),
+            content: data.answer,
+            sender: 'ai',
+            timestamp: new Date(),
+          };
+
+          setMessages(prev => [...prev, aiResponse]);
+        } else {
+          const errorResponse: Message = {
+            id: (Date.now() + 1).toString(),
+            content: data.answer || 'Desculpe, ocorreu um erro ao processar sua pergunta. Tente novamente.',
+            sender: 'ai',
+            timestamp: new Date(),
+          };
+
+          setMessages(prev => [...prev, errorResponse]);
+        }
+      } catch (error) {
+        console.error('Erro ao chamar API:', error);
+        
+        const errorResponse: Message = {
           id: (Date.now() + 1).toString(),
-          content: generateAIResponse(userMessage.content),
+          content: 'Desculpe, não consegui me conectar ao servidor. Verifique sua conexão e tente novamente.',
           sender: 'ai',
           timestamp: new Date(),
         };
 
-        setMessages(prev => [...prev, aiResponse]);
+        setMessages(prev => [...prev, errorResponse]);
+      } finally {
         setIsTyping(false);
-      }, 2000 + Math.random() * 1000);
+      }
     }
-  };
-
-  const generateAIResponse = (userInput: string): string => {
-    // resposta padrão mockada - provisório
-    const responses = [
-      "Entendi sua dúvida! Para criar uma tarefa de alteração de arte, você deve seguir os seguintes passos: 1) Acesse o sistema interno, 2) Navegue até a seção de solicitações, 3) Preencha o formulário com detalhes específicos da alteração necessária.",
-      "O processo de produção de e-mail marketing normalmente leva entre 3 a 5 dias úteis, dependendo da complexidade do layout e da quantidade de revisões necessárias.",
-      "Para acessar o GA4, você deve solicitar permissões ao time de Analytics através do email analytics@empresa.com, informando seu nome, departamento e justificativa de uso.",
-      "Posso ajudar você com mais detalhes sobre esse processo. Existe algum aspecto específico que gostaria de saber mais?",
-      "Baseado na sua pergunta, recomendo consultar também nossa documentação interna disponível no portal corporativo.",
-    ];
-
-    return responses[Math.floor(Math.random() * responses.length)];
   };
 
   const handleAttachFile = () => {
