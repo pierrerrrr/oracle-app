@@ -211,6 +211,16 @@ export default function AnimatedAIChat(userName: string) {
     } else {
       document.documentElement.classList.remove('dark');
     }
+
+    // Bloquear rolagem da página
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+
+    // Cleanup: restaurar rolagem quando o componente for desmontado
+    return () => {
+      document.body.style.overflow = 'auto';
+      document.documentElement.style.overflow = 'auto';
+    };
   }, []);
 
   useEffect(() => {
@@ -377,8 +387,8 @@ export default function AnimatedAIChat(userName: string) {
   }, [messages, isTyping]);
 
   return (
-    <div className="flex w-screen overflow-x-hidden">
-      <div className="text-foreground relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-transparent p-6">
+    <div className="flex w-screen h-screen overflow-hidden">
+      <div className="text-foreground relative flex h-full w-full flex-col items-center justify-center overflow-hidden bg-transparent">
         <div className="absolute inset-0 h-full w-full overflow-hidden">
           <div className="bg-primary/10 absolute top-0 left-1/4 h-96 w-96 animate-pulse rounded-full mix-blend-normal blur-[128px] filter" />
           <div className="bg-secondary/10 absolute right-1/4 bottom-0 h-96 w-96 animate-pulse rounded-full mix-blend-normal blur-[128px] filter delay-700" />
@@ -388,14 +398,14 @@ export default function AnimatedAIChat(userName: string) {
         <div className="relative mx-auto w-full max-w-4xl h-full flex flex-col">
           {!hasStartedChat ? (
             <motion.div
-              className="relative z-10 space-y-12 flex-1 flex flex-col justify-center"
+              className="relative z-10 space-y-8 flex-1 flex flex-col justify-center p-6 overflow-y-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
             >
               <div className="space-y-6 text-center">
                 <motion.h1
-                  className="text-5xl font-regular tracking-tight"
+                  className="text-4xl md:text-5xl font-regular tracking-tight bg-gradient-to-r from-foreground via-foreground/90 to-foreground/70 bg-clip-text text-transparent"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.5 }}
@@ -413,7 +423,7 @@ export default function AnimatedAIChat(userName: string) {
               </div>
 
               <motion.div
-                className="flex flex-wrap items-center justify-center gap-3"
+                className="flex flex-wrap items-center justify-center gap-3 max-w-4xl mx-auto"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.5 }}
@@ -449,26 +459,30 @@ export default function AnimatedAIChat(userName: string) {
             <div className="flex-1 flex flex-col h-full">
               {/* Header do chat */}
               <motion.div
-                className="flex items-center justify-between p-4 border-b border-border/50 backdrop-blur-sm"
+                className="fixed top-0 left-0 right-0 z-10 p-4 border-b border-border/50 backdrop-blur-sm bg-background/80"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                    <Sparkles className="w-4 h-4 text-primary" />
-                  </div>
-                  <div>
-                    <h2 className="font-medium">Assistente Oracle</h2>
-                    <p className="text-xs text-muted-foreground">
-                      {isTyping ? 'Digitando...' : 'Online'}
-                    </p>
+                <div className="mx-auto w-full max-w-4xl">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                        <Sparkles className="w-4 h-4 text-primary" />
+                      </div>
+                      <div>
+                        <h2 className="font-medium">Assistente Oracle</h2>
+                        <p className="text-xs text-muted-foreground">
+                          {isTyping ? 'Digitando...' : 'Online'}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </motion.div>
 
               {/* Área das mensagens */}
-              <div className="flex-1 overflow-y-auto p-4 space-y-4">
+              <div className="flex-1 overflow-y-auto p-4 space-y-4 pt-24 pb-32">
                 <AnimatePresence>
                   {messages.map((message) => (
                     <MessageBubble key={message.id} message={message} />
@@ -499,12 +513,13 @@ export default function AnimatedAIChat(userName: string) {
 
           {/* Input área */}
           <motion.div
-            className="relative z-10 p-4 border-t border-border/50 backdrop-blur-sm"
+            className="fixed bottom-0 left-0 right-0 z-10 p-4 border-t border-border/50 backdrop-blur-sm bg-background/80"
             initial={hasStartedChat ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="border-border bg-card/80 relative rounded-2xl border shadow-2xl backdrop-blur-2xl">
+            <div className="mx-auto w-full max-w-4xl">
+              <div className="border-border bg-card/80 relative rounded-2xl border shadow-2xl backdrop-blur-2xl">
               <div className="relative flex items-end gap-3 p-4">
                 {/* Command Palette */}
                 <AnimatePresence>
@@ -651,6 +666,7 @@ export default function AnimatedAIChat(userName: string) {
                 </motion.div>
               )}
             </AnimatePresence>
+            </div>
           </motion.div>
         </div>
 
