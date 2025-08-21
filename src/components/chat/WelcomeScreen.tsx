@@ -26,7 +26,7 @@ export function WelcomeScreen({ onSuggestionClick }: WelcomeScreenProps) {
           transition={{ delay: 0.2, duration: 0.5 }}
         >
           Olá,{' '}
-          <span className="tracking-tight bg-gradient-to-r from-[#d97757] via-[#d97757]/90 to-[#d97757]/70 bg-clip-text text-transparent">
+          <span className="tracking-tight bg-gradient-to-r from-primary via-primary/90 to-primary/70 bg-clip-text text-transparent">
             {userName}!
           </span>{' '}
           <br />

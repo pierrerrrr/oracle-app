@@ -47,6 +47,22 @@
       "tags": ["vpn", "acesso", "remoto", "configurar", "conexão", "home office", "trabalho"],
       "pergunta": "Como configurar a VPN para trabalho remoto?",
       "resposta": "Para configurar o acesso VPN:\n\n**Pré-requisitos:**\n• Aprovação do gestor para trabalho remoto\n• Solicitação aprovada pelo TI\n\n**Configuração:**\n1) Baixe o cliente VPN no portal interno\n2) Instale seguindo as instruções específicas do seu SO\n3) Use suas credenciais corporativas para login\n4) Conecte-se ao servidor da empresa\n\n**Suporte:**\nEm caso de problemas, abra um chamado no TI informando:\n• Sistema operacional\n• Mensagem de erro (se houver)\n• Prints da tela\n\n⚠️ **Importante**: Nunca compartilhe suas credenciais VPN."
+    },
+    {
+      "id": "reembolso_gastos",
+      "titulo": "Como solicitar reembolso de gastos",
+      "categoria": "Financeiro",
+      "tags": ["reembolso", "gastos", "finanças", "solicitar", "pedido", "despesas"],
+      "pergunta": "Como solicitar reembolso de gastos?",
+      "resposta": "Para solicitar reembolso de gastos:\n\n**Passo a passo:**\n1) Acesse o sistema financeiro (**financas.empresa.com**)\n2) Vá para **'Reembolsos'**\n3) Clique em **'Nova Solicitação'**\n4) Preencha os campos obrigatórios:\n   • Data do gasto\n   • Descrição detalhada\n   • Valor\n   • Anexe comprovantes (notas fiscais, recibos)\n5) Envie para aprovação do gestor imediato\n\n**Prazos:**\n• O gestor tem até **5 dias úteis** para aprovar ou rejeitar\n• Após aprovação, o financeiro processa em até **10 dias úteis**\n\n✅ **Dica**: Sempre guarde os comprovantes originais."
+    },
+    {
+      "id": "reuniao_agendar",
+      "titulo": "Como agendar uma reunião",
+      "categoria": "Comunicação Interna",
+      "tags": ["reunião", "agendar", "calendário", "convite", "meeting", "schedule"],
+      "pergunta": "Como agendar uma reunião?",
+      "resposta": "Para agendar uma reunião:\n\n**Passo a passo:**\n1) Acesse o calendário corporativo (**calendario.empresa.com**)\n2) Clique em **'Nova Reunião'**\n3) Preencha os detalhes:\n   • Título da reunião\n   • Data e hora\n   • Duração estimada\n   • Local (sala ou link de videoconferência)\n4) Adicione participantes (e-mails separados por vírgula)\n5) Insira uma descrição ou pauta, se necessário\n6) Envie o convite\n\n**Dicas:**\n• Verifique a disponibilidade dos participantes antes de escolher o horário\n• Use lembretes automáticos para evitar faltas"
     }
   ]
 }
