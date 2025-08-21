@@ -128,6 +128,13 @@ export function ChatInterface() {
     }
   };
 
+  const resetChat = () => {
+    setMessages([]);
+    setValue('');
+    setHasStartedChat(false);
+    setIsTyping(false);
+  };
+
   return (
     <div className="flex w-screen h-screen overflow-hidden">
       <div className="text-foreground relative flex h-full w-full flex-col items-center justify-center overflow-hidden bg-transparent">
@@ -155,6 +162,7 @@ export function ChatInterface() {
             isTyping={isTyping}
             isDarkMode={isDarkMode}
             onToggleTheme={toggleTheme}
+            onResetChat={resetChat}
             inputFocused={inputFocused}
             onInputFocus={setInputFocused}
             mousePosition={mousePosition}

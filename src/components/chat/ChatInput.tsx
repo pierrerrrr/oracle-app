@@ -11,6 +11,8 @@ import {
   Figma,
   MonitorIcon,
   User,
+  RotateCcw,
+  RotateCw,
 } from 'lucide-react';
 
 interface UseAutoResizeTextareaProps {
@@ -78,6 +80,7 @@ interface ChatInputProps {
   isTyping: boolean;
   isDarkMode: boolean;
   onToggleTheme: () => void;
+  onResetChat: () => void;
   inputFocused: boolean;
   onInputFocus: (focused: boolean) => void;
   mousePosition: { x: number; y: number };
@@ -90,6 +93,7 @@ export function ChatInput({
   isTyping,
   isDarkMode,
   onToggleTheme,
+  onResetChat,
   inputFocused,
   onInputFocus,
   mousePosition,
@@ -296,6 +300,15 @@ export function ChatInput({
               </div>
 
               <div className="flex items-end gap-2">
+                <motion.button
+                  onClick={onResetChat}
+                  className="text-muted-foreground hover:text-foreground flex h-8 w-8 items-center justify-center rounded-md transition-colors"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <RotateCw className="h-4 w-4" />
+                </motion.button>
+
                 <motion.button
                   onClick={onToggleTheme}
                   className="text-muted-foreground hover:text-foreground flex h-8 w-8 items-center justify-center rounded-md transition-colors"

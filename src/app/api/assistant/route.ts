@@ -139,3 +139,8 @@ Você pode reformular sua pergunta ou perguntar sobre algum desses tópicos espe
     }, { status: 500 });
   }
 }
+
+
+// WIP: adicionar uma forma de toda pergunta que o assistente não souber responde, além de retornar uma mensagem padrão, ele adiciona em um arquivo new_processos.json e atualiza o arquivo processos.json com a nova pergunta e resposta
+// isso pode ser feito com um endpoint separado ou dentro do mesmo endpoint, mas com uma flag
+// que indica se é uma nova pergunta ou não. Assim, o assistente aprende com as novas perguntas e respostas.
