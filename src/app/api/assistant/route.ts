@@ -72,7 +72,7 @@ function findBestMatch(query: string, processos: Process[]): Process | null {
   return bestMatch;
 }
 
-function loadProcessos(): ProcessData {
+function loadProcess(): ProcessData {
   try {
     const filePath = path.join(process.cwd(), 'src', 'data', 'processos.json');
     const fileContent = fs.readFileSync(filePath, 'utf8');
@@ -94,7 +94,7 @@ export async function POST(request: NextRequest) {
       }, { status: 400 });
     }
     
-    const { processos } = loadProcessos();
+    const { processos } = loadProcess();
     
     if (processos.length === 0) {
       return NextResponse.json({ 
