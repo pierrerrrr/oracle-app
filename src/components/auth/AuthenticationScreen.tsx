@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { SignInButton, SignUpButton } from '@clerk/nextjs';
 import { Button } from '@/components/ui/button';
-import { Sparkles, Shield, Users, Zap, Github } from 'lucide-react';
+import { Sparkles, Shield, Users, Zap, Github, ShieldCheck } from 'lucide-react';
 
 export function AuthenticationScreen() {
   return (
@@ -42,7 +42,7 @@ export function AuthenticationScreen() {
           >
             <div className="grid gap-3">
               <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                <Shield className="w-4 h-4 text-primary" />
+                <ShieldCheck className="w-4 h-4 text-primary" />
                 <span>Acesso seguro e personalizado</span>
               </div>
               <div className="flex items-center gap-3 text-sm text-muted-foreground">
