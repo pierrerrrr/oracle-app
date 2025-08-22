@@ -63,6 +63,22 @@
       "tags": ["reunião", "agendar", "calendário", "convite", "meeting", "schedule"],
       "pergunta": "Como agendar uma reunião?",
       "resposta": "Para agendar uma reunião:\n\n**Passo a passo:**\n1) Acesse o calendário corporativo (**calendario.empresa.com**)\n2) Clique em **'Nova Reunião'**\n3) Preencha os detalhes:\n   • Título da reunião\n   • Data e hora\n   • Duração estimada\n   • Local (sala ou link de videoconferência)\n4) Adicione participantes (e-mails separados por vírgula)\n5) Insira uma descrição ou pauta, se necessário\n6) Envie o convite\n\n**Dicas:**\n• Verifique a disponibilidade dos participantes antes de escolher o horário\n• Use lembretes automáticos para evitar faltas"
+    },
+    {
+      "id": "ferramentas",
+      "titulo": "Ferramentas mais utilizadas na empresa",
+      "categoria": "Ferramentas e Softwares",
+      "tags": ["ferramentas", "utilizadas", "empresa", "softwares", "apps", "programas"],
+      "pergunta": "Quais são as ferramentas mais utilizadas na empresa?",
+      "resposta": "As ferramentas mais utilizadas na empresa incluem:\n\n1) **Google Meet** - para videoconferências e reuniões online\n2) **Google Gmail** - para controle de e-mails internos e com clientes \n3) **Google Drive** - para armazenamento de arquivos e materiais em nuvem\n4) **Runrun.it** - para gestão de tarefas e projetos\n5) **Zintec** - para gerenciamento de Whatsapp e Clientes\n6) **Google Agenda** - para organizar reuniões e tarefas do dia"
+    },
+    {
+      "id": "sla",
+      "titulo": "Qual é o SLA de atendimento da empresa?",
+      "categoria": "Suporte e Atendimento",
+      "tags": ["sla", "atendimento", "suporte", "empresa", "prazo", "clientes", "mensagem"],
+      "pergunta": "Qual prazo temos para responder os clientes?",
+      "resposta": "O SLA (Service Level Agreement) de atendimento da empresa é:\n\n1) **E-mails**: Resposta em até **24 horas úteis**\n2) **Chamados de Suporte**: Resolução em até **48 horas úteis** para problemas críticos, e até **5 dias úteis** para questões não críticas:\n3) **Reuniões agendadas**: Confirmação de presença em até **12 horas úteis**\n\n⚠️ **Importante**: Sempre priorizar a comunicação clara e manter os clientes informados sobre o status das solicitações."
     }
   ]
 }
