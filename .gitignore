@@ -42,3 +42,5 @@ next-env.d.ts
 
 COMPONENTS.md
 .version
+
+index.mjs
