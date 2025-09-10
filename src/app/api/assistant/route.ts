@@ -16,8 +16,28 @@ interface Process {
   resposta: string;
 }
 
-interface ProcessData {
+interface ToolInfo {
+  nome: string;
+  descricao: string;
+  categoria: string;
   processos: Process[];
+}
+
+interface ProcessDataV2 {
+  metadata?: {
+    versao: string;
+    ultima_atualizacao: string;
+    total_processos: number;
+    estrutura: string;
+  };
+  ferramentas?: {
+    [key: string]: ToolInfo;
+  };
+  departamentos?: {
+    [key: string]: Process[];
+  };
+  processos_gerais?: Process[];
+  processos?: Process[];
 }
 
 function normalizeText(text: string): string {
@@ -77,14 +97,151 @@ function findBestMatch(query: string, processos: Process[]): Process | null {
   return bestMatch;
 }
 
-function loadProcess(): ProcessData {
+function loadProcess(): Process[] {
   try {
     const filePath = path.join(process.cwd(), 'src', 'data', 'processos.json');
     const fileContent = fs.readFileSync(filePath, 'utf8');
-    return JSON.parse(fileContent);
+    const data: ProcessDataV2 = JSON.parse(fileContent);
+    
+    if (data.metadata?.versao === "2.0" && (data.ferramentas || data.departamentos)) {
+      const allProcesses: Process[] = [];
+      
+      if (data.ferramentas) {
+        Object.values(data.ferramentas).forEach(ferramenta => {
+          allProcesses.push(...ferramenta.processos);
+        });
+      }
+      
+      if (data.departamentos) {
+        Object.values(data.departamentos).forEach(processos => {
+          allProcesses.push(...processos);
+        });
+      }
+      
+      if (data.processos_gerais) {
+        allProcesses.push(...data.processos_gerais);
+      }
+      
+      return allProcesses;
+    }
+    
+    return data.processos || [];
+    
   } catch (error) {
     console.error('Erro ao carregar processos:', error);
-    return { processos: [] };
+    return [];
+  }
+}
+
+function getProcessesByTool(toolName: string): Process[] {
+  try {
+    const filePath = path.join(process.cwd(), 'src', 'data', 'processos.json');
+    const fileContent = fs.readFileSync(filePath, 'utf8');
+    const data: ProcessDataV2 = JSON.parse(fileContent);
+    
+    return data.ferramentas?.[toolName]?.processos || [];
+  } catch (error) {
+    console.error(`Erro ao carregar processos da ferramenta ${toolName}:`, error);
+    return [];
+  }
+}
+
+function getProcessesByDepartment(departmentName: string): Process[] {
+  try {
+    const filePath = path.join(process.cwd(), 'src', 'data', 'processos.json');
+    const fileContent = fs.readFileSync(filePath, 'utf8');
+    const data: ProcessDataV2 = JSON.parse(fileContent);
+    
+    return data.departamentos?.[departmentName] || [];
+  } catch (error) {
+    console.error(`Erro ao carregar processos do departamento ${departmentName}:`, error);
+    return [];
+  }
+}
+
+function getDataStats(): { totalProcessos: number; totalFerramentas: number; totalDepartamentos: number; ultimaAtualizacao: string } {
+  try {
+    const filePath = path.join(process.cwd(), 'src', 'data', 'processos.json');
+    const fileContent = fs.readFileSync(filePath, 'utf8');
+    const data: ProcessDataV2 = JSON.parse(fileContent);
+    
+    let totalProcessos = 0;
+    let totalFerramentas = 0;
+    let totalDepartamentos = 0;
+
+    if (data.metadata?.versao === "2.0") {
+      if (data.ferramentas) {
+        totalFerramentas = Object.keys(data.ferramentas).length;
+        Object.values(data.ferramentas).forEach(ferramenta => {
+          totalProcessos += ferramenta.processos.length;
+        });
+      }
+      
+      if (data.departamentos) {
+        totalDepartamentos = Object.keys(data.departamentos).length;
+        Object.values(data.departamentos).forEach(processos => {
+          totalProcessos += processos.length;
+        });
+      }
+      
+      if (data.processos_gerais) {
+        totalProcessos += data.processos_gerais.length;
+      }
+    } else {
+      totalProcessos = data.processos?.length || 0;
+    }
+
+    return {
+      totalProcessos,
+      totalFerramentas,
+      totalDepartamentos,
+      ultimaAtualizacao: data.metadata?.ultima_atualizacao || new Date().toISOString().split('T')[0]
+    };
+  } catch (error) {
+    console.error('Erro ao obter estatísticas:', error);
+    return {
+      totalProcessos: 0,
+      totalFerramentas: 0,
+      totalDepartamentos: 0,
+      ultimaAtualizacao: new Date().toISOString().split('T')[0]
+    };
+  }
+}
+
+function getAvailableTools(): ToolInfo[] {
+  try {
+    const filePath = path.join(process.cwd(), 'src', 'data', 'processos.json');
+    const fileContent = fs.readFileSync(filePath, 'utf8');
+    const data: ProcessDataV2 = JSON.parse(fileContent);
+    
+    if (data.ferramentas) {
+      return Object.values(data.ferramentas);
+    }
+    
+    return [];
+  } catch (error) {
+    console.error('Erro ao carregar ferramentas:', error);
+    return [];
+  }
+}
+
+function getAvailableDepartments(): { name: string; processCount: number }[] {
+  try {
+    const filePath = path.join(process.cwd(), 'src', 'data', 'processos.json');
+    const fileContent = fs.readFileSync(filePath, 'utf8');
+    const data: ProcessDataV2 = JSON.parse(fileContent);
+    
+    if (data.departamentos) {
+      return Object.entries(data.departamentos).map(([name, processes]) => ({
+        name,
+        processCount: processes.length
+      }));
+    }
+    
+    return [];
+  } catch (error) {
+    console.error('Erro ao carregar departamentos:', error);
+    return [];
   }
 }
 
@@ -169,7 +326,7 @@ export async function POST(request: NextRequest) {
       }, { status: 500 });
     }
 
-    const { processos } = loadProcess();
+    const processos = loadProcess();
 
     if (processos.length === 0) {
       return NextResponse.json({

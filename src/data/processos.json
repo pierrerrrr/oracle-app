@@ -1,69 +1,133 @@
 {
-  "processos": [
-    {
-      "id": "art_alteracao",
-      "titulo": "Como criar tarefa de alteração de arte",
-      "categoria": "Arte e Design",
-      "tags": ["arte", "alteração", "tarefa", "design", "criação", "criar", "alterar"],
-      "pergunta": "Como criar a tarefa de alteração de arte?",
-      "resposta": "Para criar uma tarefa de alteração de arte, siga estes passos:\n\n1) **Acesse o sistema interno** de gestão de projetos\n2) **Navegue até a seção 'Solicitações'** no menu lateral\n3) **Clique em 'Nova Solicitação'** e selecione 'Alteração de Arte'\n4) **Preencha o formulário** com:\n   • Título da peça\n   • Descrição detalhada da alteração\n   • Prazo desejado\n   • Anexe a arte original\n5) **Defina a prioridade** (baixa, média, alta)\n6) **Submeta a solicitação**\n\nO prazo médio de execução é de **2-3 dias úteis**."
+  "metadata": {
+    "versao": "2.0",
+    "ultima_atualizacao": "2025-09-10",
+    "total_processos": 10
+  },
+
+  "ferramentas": {
+    "runrunit": {
+      "nome": "Runrun.it",
+      "descricao": "Gestão de projetos e tarefas",
+      "categoria": "Produtividade",
+      "processos": []
     },
-    {
-      "id": "email_marketing_prazo",
-      "titulo": "Prazo de produção de e-mail marketing",
-      "categoria": "Marketing Digital",
-      "tags": ["email", "marketing", "prazo", "produção", "tempo", "dias", "quanto", "demora"],
-      "pergunta": "Quantos dias o e-mail marketing leva para ser produzido?",
-      "resposta": "A produção de e-mail marketing leva em média **3 a 5 dias úteis**, considerando:\n\n**1º dia** - Briefing e aprovação do conceito\n**2º-3º dia** - Criação do layout e conteúdo\n**4º dia** - Revisões e ajustes\n**5º dia** - Aprovação final e programação\n\nPara campanhas complexas ou com muitas revisões, o prazo pode se estender para até **7 dias úteis**.\n\n💡 **Recomendamos solicitar com antecedência mínima de 1 semana.**"
+    "google_workspace": {
+      "nome": "Google Workspace",
+      "descricao": "Ferramentas do Google (Gmail, Drive, Agenda, Meet)",
+      "categoria": "Produtividade",
+      "processos": [
+        {
+          "id": "reuniao_agendar",
+          "titulo": "Como agendar uma reunião",
+          "categoria": "Comunicação Interna",
+          "tags": ["reunião", "agendar", "calendário", "convite", "meeting", "schedule", "google", "agenda"],
+          "pergunta": "Como agendar uma reunião?",
+          "resposta": "Para agendar uma reunião:\n\n**Passo a passo:**\n1) Acesse o calendário corporativo (**calendario.empresa.com**)\n2) Clique em **'Nova Reunião'**\n3) Preencha os detalhes:\n   • Título da reunião\n   • Data e hora\n   • Duração estimada\n   • Local (sala ou link de videoconferência)\n4) Adicione participantes (e-mails separados por vírgula)\n5) Insira uma descrição ou pauta, se necessário\n6) Envie o convite\n\n**Dicas:**\n• Verifique a disponibilidade dos participantes antes de escolher o horário\n• Use lembretes automáticos para evitar faltas"
+        }
+      ]
     },
-    {
-      "id": "ga4_acesso",
-      "titulo": "Solicitar acesso ao Google Analytics 4",
+    "google_analytics": {
+      "nome": "Google Analytics 4",
+      "descricao": "Ferramenta de análise de dados e métricas",
       "categoria": "Analytics",
-      "tags": ["ga4", "google analytics", "acesso", "permissão", "analytics", "solicitar", "pedir"],
-      "pergunta": "Como solicitar acesso ao GA4?",
-      "resposta": "Para solicitar acesso ao Google Analytics 4 (GA4), envie um e-mail para **analytics@empresa.com** com as seguintes informações:\n\n**Informações necessárias:**\n1) Nome completo\n2) Departamento/área\n3) Cargo/função\n4) Justificativa para o acesso (projetos que utilizará)\n5) Nível de permissão necessário:\n   • Visualizador\n   • Editor\n   • Administrador\n\nO time de Analytics avaliará a solicitação em até **2 dias úteis** e enviará as instruções de acesso por e-mail."
+      "processos": [
+        {
+          "id": "ga4_acesso",
+          "titulo": "Solicitar acesso ao Google Analytics 4",
+          "categoria": "Analytics",
+          "tags": ["ga4", "google analytics", "acesso", "permissão", "analytics", "solicitar", "pedir"],
+          "pergunta": "Como solicitar acesso ao GA4?",
+          "resposta": "Para solicitar acesso ao Google Analytics 4 (GA4), envie um e-mail para **analytics@empresa.com** com as seguintes informações:\n\n**Informações necessárias:**\n1) Nome completo\n2) Departamento/área\n3) Cargo/função\n4) Justificativa para o acesso (projetos que utilizará)\n5) Nível de permissão necessário:\n   • Visualizador\n   • Editor\n   • Administrador\n\nO time de Analytics avaliará a solicitação em até **2 dias úteis** e enviará as instruções de acesso por e-mail."
+        }
+      ]
     },
-    {
-      "id": "suporte_ti",
-      "titulo": "Como abrir chamado no suporte de TI",
-      "categoria": "Tecnologia da Informação",
-      "tags": ["suporte", "ti", "chamado", "técnico", "problema", "abrir", "help", "ajuda"],
-      "pergunta": "Como abrir um chamado no suporte de TI?",
-      "resposta": "Para abrir um chamado no suporte de TI:\n\n**Passo a passo:**\n1) Acesse o portal interno em **suporte.empresa.com**\n2) Faça login com suas credenciais corporativas\n3) Clique em **'Novo Chamado'**\n4) Selecione a categoria do problema:\n   • Hardware\n   • Software\n   • Rede\n   • Acesso\n5) Descreva detalhadamente o problema (inclua prints quando possível)\n6) Defina a urgência\n7) Submeta o chamado\n\n**SLAs de Atendimento:**\n• **Crítico**: 2 horas\n• **Alto**: 4 horas\n• **Médio**: 1 dia\n• **Baixo**: 3 dias\n\nVocê receberá um número de protocolo por e-mail."
+    "zintec": {
+      "nome": "Zintec",
+      "descricao": "Gerenciamento de WhatsApp e Clientes",
+      "categoria": "CRM",
+      "processos": []
     },
-    {
-      "id": "ferias_solicitar",
-      "titulo": "Como solicitar férias",
-      "categoria": "Recursos Humanos",
-      "tags": ["férias", "solicitar", "rh", "aprovação", "descanso", "pedir", "vacation"],
-      "pergunta": "Como solicitar férias?",
-      "resposta": "Para solicitar férias:\n\n**Processo:**\n1) Acesse o sistema de RH (**rh.empresa.com**)\n2) Vá em **'Meus Benefícios' > 'Férias'**\n3) Clique em **'Nova Solicitação'**\n4) Escolha o período desejado (mínimo 5 dias corridos)\n5) Verifique seu saldo disponível\n6) Adicione observações se necessário\n7) Envie para aprovação do gestor direto\n\n**Prazos importantes:**\n• Solicitação deve ser feita com **antecedência mínima de 30 dias**\n• Após aprovação do gestor, o RH tem até **3 dias** para validação final\n\n✅ **Dica**: Verifique sempre seu saldo antes de solicitar!"
-    },
-    {
-      "id": "vpn_acesso",
-      "titulo": "Como configurar acesso VPN",
-      "categoria": "Tecnologia da Informação",
-      "tags": ["vpn", "acesso", "remoto", "configurar", "conexão", "home office", "trabalho"],
-      "pergunta": "Como configurar a VPN para trabalho remoto?",
-      "resposta": "Para configurar o acesso VPN:\n\n**Pré-requisitos:**\n• Aprovação do gestor para trabalho remoto\n• Solicitação aprovada pelo TI\n\n**Configuração:**\n1) Baixe o cliente VPN no portal interno\n2) Instale seguindo as instruções específicas do seu SO\n3) Use suas credenciais corporativas para login\n4) Conecte-se ao servidor da empresa\n\n**Suporte:**\nEm caso de problemas, abra um chamado no TI informando:\n• Sistema operacional\n• Mensagem de erro (se houver)\n• Prints da tela\n\n⚠️ **Importante**: Nunca compartilhe suas credenciais VPN."
-    },
-    {
-      "id": "reembolso_gastos",
-      "titulo": "Como solicitar reembolso de gastos",
-      "categoria": "Financeiro",
-      "tags": ["reembolso", "gastos", "finanças", "solicitar", "pedido", "despesas"],
-      "pergunta": "Como solicitar reembolso de gastos?",
-      "resposta": "Para solicitar reembolso de gastos:\n\n**Passo a passo:**\n1) Acesse o sistema financeiro (**financas.empresa.com**)\n2) Vá para **'Reembolsos'**\n3) Clique em **'Nova Solicitação'**\n4) Preencha os campos obrigatórios:\n   • Data do gasto\n   • Descrição detalhada\n   • Valor\n   • Anexe comprovantes (notas fiscais, recibos)\n5) Envie para aprovação do gestor imediato\n\n**Prazos:**\n• O gestor tem até **5 dias úteis** para aprovar ou rejeitar\n• Após aprovação, o financeiro processa em até **10 dias úteis**\n\n✅ **Dica**: Sempre guarde os comprovantes originais."
-    },
-    {
-      "id": "reuniao_agendar",
-      "titulo": "Como agendar uma reunião",
-      "categoria": "Comunicação Interna",
-      "tags": ["reunião", "agendar", "calendário", "convite", "meeting", "schedule"],
-      "pergunta": "Como agendar uma reunião?",
-      "resposta": "Para agendar uma reunião:\n\n**Passo a passo:**\n1) Acesse o calendário corporativo (**calendario.empresa.com**)\n2) Clique em **'Nova Reunião'**\n3) Preencha os detalhes:\n   • Título da reunião\n   • Data e hora\n   • Duração estimada\n   • Local (sala ou link de videoconferência)\n4) Adicione participantes (e-mails separados por vírgula)\n5) Insira uma descrição ou pauta, se necessário\n6) Envie o convite\n\n**Dicas:**\n• Verifique a disponibilidade dos participantes antes de escolher o horário\n• Use lembretes automáticos para evitar faltas"
-    },
+    "sistemas_internos": {
+      "nome": "Sistemas Internos",
+      "descricao": "Portal interno, VPN e outros sistemas da empresa",
+      "categoria": "Infraestrutura",
+      "processos": [
+        {
+          "id": "vpn_acesso",
+          "titulo": "Como configurar acesso VPN",
+          "categoria": "Tecnologia da Informação",
+          "tags": ["vpn", "acesso", "remoto", "configurar", "conexão", "home office", "trabalho"],
+          "pergunta": "Como configurar a VPN para trabalho remoto?",
+          "resposta": "Para configurar o acesso VPN:\n\n**Pré-requisitos:**\n• Aprovação do gestor para trabalho remoto\n• Solicitação aprovada pelo TI\n\n**Configuração:**\n1) Baixe o cliente VPN no portal interno\n2) Instale seguindo as instruções específicas do seu SO\n3) Use suas credenciais corporativas para login\n4) Conecte-se ao servidor da empresa\n\n**Suporte:**\nEm caso de problemas, abra um chamado no TI informando:\n• Sistema operacional\n• Mensagem de erro (se houver)\n• Prints da tela\n\n⚠️ **Importante**: Nunca compartilhe suas credenciais VPN."
+        }
+      ]
+    }
+  },
+
+  "departamentos": {
+    "rh": [
+      {
+        "id": "ferias_solicitar",
+        "titulo": "Como solicitar férias",
+        "categoria": "Recursos Humanos",
+        "tags": ["férias", "solicitar", "rh", "aprovação", "descanso", "pedir", "vacation"],
+        "pergunta": "Como solicitar férias?",
+        "resposta": "Para solicitar férias:\n\n**Processo:**\n1) Acesse o sistema de RH (**rh.empresa.com**)\n2) Vá em **'Meus Benefícios' > 'Férias'**\n3) Clique em **'Nova Solicitação'**\n4) Escolha o período desejado (mínimo 5 dias corridos)\n5) Verifique seu saldo disponível\n6) Adicione observações se necessário\n7) Envie para aprovação do gestor direto\n\n**Prazos importantes:**\n• Solicitação deve ser feita com **antecedência mínima de 30 dias**\n• Após aprovação do gestor, o RH tem até **3 dias** para validação final\n\n✅ **Dica**: Verifique sempre seu saldo antes de solicitar!"
+      }
+    ],
+    "ti": [
+      {
+        "id": "suporte_ti",
+        "titulo": "Como abrir chamado no suporte de TI",
+        "categoria": "Tecnologia da Informação",
+        "tags": ["suporte", "ti", "chamado", "técnico", "problema", "abrir", "help", "ajuda"],
+        "pergunta": "Como abrir um chamado no suporte de TI?",
+        "resposta": "Para abrir um chamado no suporte de TI:\n\n**Passo a passo:**\n1) Acesse o portal interno em **suporte.empresa.com**\n2) Faça login com suas credenciais corporativas\n3) Clique em **'Novo Chamado'**\n4) Selecione a categoria do problema:\n   • Hardware\n   • Software\n   • Rede\n   • Acesso\n5) Descreva detalhadamente o problema (inclua prints quando possível)\n6) Defina a urgência\n7) Submeta o chamado\n\n**SLAs de Atendimento:**\n• **Crítico**: 2 horas\n• **Alto**: 4 horas\n• **Médio**: 1 dia\n• **Baixo**: 3 dias\n\nVocê receberá um número de protocolo por e-mail."
+      }
+    ],
+    "financeiro": [
+      {
+        "id": "reembolso_gastos",
+        "titulo": "Como solicitar reembolso de gastos",
+        "categoria": "Financeiro",
+        "tags": ["reembolso", "gastos", "finanças", "solicitar", "pedido", "despesas"],
+        "pergunta": "Como solicitar reembolso de gastos?",
+        "resposta": "Para solicitar reembolso de gastos:\n\n**Passo a passo:**\n1) Acesse o sistema financeiro (**financas.empresa.com**)\n2) Vá para **'Reembolsos'**\n3) Clique em **'Nova Solicitação'**\n4) Preencha os campos obrigatórios:\n   • Data do gasto\n   • Descrição detalhada\n   • Valor\n   • Anexe comprovantes (notas fiscais, recibos)\n5) Envie para aprovação do gestor imediato\n\n**Prazos:**\n• O gestor tem até **5 dias úteis** para aprovar ou rejeitar\n• Após aprovação, o financeiro processa em até **10 dias úteis**\n\n✅ **Dica**: Sempre guarde os comprovantes originais."
+      }
+    ],
+    "arte_design": [
+      {
+        "id": "art_alteracao",
+        "titulo": "Como criar tarefa de alteração de arte",
+        "categoria": "Arte e Design",
+        "tags": ["arte", "alteração", "tarefa", "design", "criação", "criar", "alterar"],
+        "pergunta": "Como criar a tarefa de alteração de arte?",
+        "resposta": "Para criar uma tarefa de alteração de arte, siga estes passos:\n\n1) **Acesse o sistema interno** de gestão de projetos\n2) **Navegue até a seção 'Solicitações'** no menu lateral\n3) **Clique em 'Nova Solicitação'** e selecione 'Alteração de Arte'\n4) **Preencha o formulário** com:\n   • Título da peça\n   • Descrição detalhada da alteração\n   • Prazo desejado\n   • Anexe a arte original\n5) **Defina a prioridade** (baixa, média, alta)\n6) **Submeta a solicitação**\n\nO prazo médio de execução é de **2-3 dias úteis**."
+      }
+    ],
+    "marketing": [
+      {
+        "id": "email_marketing_prazo",
+        "titulo": "Prazo de produção de e-mail marketing",
+        "categoria": "Marketing Digital",
+        "tags": ["email", "marketing", "prazo", "produção", "tempo", "dias", "quanto", "demora"],
+        "pergunta": "Quantos dias o e-mail marketing leva para ser produzido?",
+        "resposta": "A produção de e-mail marketing leva em média **3 a 5 dias úteis**, considerando:\n\n**1º dia** - Briefing e aprovação do conceito\n**2º-3º dia** - Criação do layout e conteúdo\n**4º dia** - Revisões e ajustes\n**5º dia** - Aprovação final e programação\n\nPara campanhas complexas ou com muitas revisões, o prazo pode se estender para até **7 dias úteis**.\n\n💡 **Recomendamos solicitar com antecedência mínima de 1 semana.**"
+      }
+    ],
+    "suporte": [
+      {
+        "id": "sla",
+        "titulo": "Qual é o SLA de atendimento da empresa?",
+        "categoria": "Suporte e Atendimento",
+        "tags": ["sla", "atendimento", "suporte", "empresa", "prazo", "clientes", "mensagem"],
+        "pergunta": "Qual prazo temos para responder os clientes?",
+        "resposta": "O SLA (Service Level Agreement) de atendimento da empresa é:\n\n1) **E-mails**: Resposta em até **24 horas úteis**\n2) **Chamados de Suporte**: Resolução em até **48 horas úteis** para problemas críticos, e até **5 dias úteis** para questões não críticas:\n3) **Reuniões agendadas**: Confirmação de presença em até **12 horas úteis**\n\n⚠️ **Importante**: Sempre priorizar a comunicação clara e manter os clientes informados sobre o status das solicitações."
+      }
+    ]
+  },
+  "processos_gerais": [
     {
       "id": "ferramentas",
       "titulo": "Ferramentas mais utilizadas na empresa",
@@ -71,14 +135,6 @@
       "tags": ["ferramentas", "utilizadas", "empresa", "softwares", "apps", "programas"],
       "pergunta": "Quais são as ferramentas mais utilizadas na empresa?",
       "resposta": "As ferramentas mais utilizadas na empresa incluem:\n\n1) **Google Meet** - para videoconferências e reuniões online\n2) **Google Gmail** - para controle de e-mails internos e com clientes \n3) **Google Drive** - para armazenamento de arquivos e materiais em nuvem\n4) **Runrun.it** - para gestão de tarefas e projetos\n5) **Zintec** - para gerenciamento de Whatsapp e Clientes\n6) **Google Agenda** - para organizar reuniões e tarefas do dia"
-    },
-    {
-      "id": "sla",
-      "titulo": "Qual é o SLA de atendimento da empresa?",
-      "categoria": "Suporte e Atendimento",
-      "tags": ["sla", "atendimento", "suporte", "empresa", "prazo", "clientes", "mensagem"],
-      "pergunta": "Qual prazo temos para responder os clientes?",
-      "resposta": "O SLA (Service Level Agreement) de atendimento da empresa é:\n\n1) **E-mails**: Resposta em até **24 horas úteis**\n2) **Chamados de Suporte**: Resolução em até **48 horas úteis** para problemas críticos, e até **5 dias úteis** para questões não críticas:\n3) **Reuniões agendadas**: Confirmação de presença em até **12 horas úteis**\n\n⚠️ **Importante**: Sempre priorizar a comunicação clara e manter os clientes informados sobre o status das solicitações."
     }
   ]
 }
