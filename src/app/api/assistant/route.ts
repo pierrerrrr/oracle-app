@@ -90,34 +90,43 @@ function loadProcess(): ProcessData {
 
 async function generateAIResponse(userMessage: string, processosContext: Process[]): Promise<string> {
   try {
+    const contextMarkdown = processosContext.map(p => 
+      `## ${p.titulo} [${p.categoria}]
+      **Tags:** ${p.tags.join(', ')}
+      **P:** ${p.pergunta}
+      **R:** ${p.resposta}
+      ---`
+    ).join('\n\n');
+
     const systemPrompt = `Você é um assistente virtual especializado em processos internos de uma empresa. Sua missão é ajudar funcionários com dúvidas sobre procedimentos, ferramentas e processos da empresa.
 
-CONTEXTO DA EMPRESA:
-Você tem acesso à base de conhecimento completa da empresa com ${processosContext.length} processos documentados, incluindo:
-- Processos de Arte e Design
-- Marketing Digital
-- Analytics
-- Tecnologia da Informação
-- Recursos Humanos
-- Financeiro
-- Comunicação Interna
-- Ferramentas e Softwares
-- Suporte e Atendimento
+    🏢 **CONTEXTO DA EMPRESA:**
+    Você tem acesso à base de conhecimento completa da empresa com ${processosContext.length} processos documentados, incluindo:
+    - Processos de Arte e Design
+    - Marketing Digital  
+    - Analytics
+    - Tecnologia da Informação
+    - Recursos Humanos
+    - Financeiro
+    - Comunicação Interna
+    - Ferramentas e Softwares
+    - Suporte e Atendimento
 
-BASE DE CONHECIMENTO:
-${JSON.stringify(processosContext, null, 2)}
+    📚 **BASE DE CONHECIMENTO:**
 
-INSTRUÇÕES:
-1. Analise a pergunta do usuário e encontre informações relevantes na base de conhecimento
-2. Responda de forma humanizada, clara e objetiva
-3. Use um tom amigável e profissional
-4. Se a informação estiver na base, forneça uma resposta completa e estruturada
-5. Se a informação não estiver na base, seja honesto e sugira tópicos relacionados que estão disponíveis
-6. Use emojis moderadamente para tornar a resposta mais amigável
-7. Sempre formate a resposta de forma organizada (use listas, tópicos, etc.)
-8. Se relevante, mencione prazos, SLAs ou informações importantes destacadas
+    ${contextMarkdown}
 
-IMPORTANTE: Baseie suas respostas APENAS nas informações fornecidas na base de conhecimento. Não invente informações que não estão documentadas.`;
+    🎯 **INSTRUÇÕES:**
+    1. Analise a pergunta do usuário e encontre informações relevantes na base de conhecimento
+    2. Responda de forma humanizada, clara e objetiva
+    3. Use um tom amigável e profissional
+    4. Se a informação estiver na base, forneça uma resposta completa e estruturada
+    5. Se a informação não estiver na base, seja honesto e sugira tópicos relacionados que estão disponíveis
+    6. Use emojis moderadamente para tornar a resposta mais amigável
+    7. Sempre formate a resposta de forma organizada (use listas, tópicos, etc.)
+    8. Se relevante, mencione prazos, SLAs ou informações importantes destacadas
+
+    ⚠️ **IMPORTANTE:** Baseie suas respostas APENAS nas informações fornecidas na base de conhecimento. Não invente informações que não estão documentadas.`;
 
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
@@ -132,7 +141,7 @@ IMPORTANTE: Baseie suas respostas APENAS nas informações fornecidas na base de
         }
       ],
       temperature: 0.7,
-      max_tokens: 800
+      max_tokens: 1000
     });
 
     return completion.choices[0]?.message?.content || 'Desculpe, não consegui processar sua pergunta no momento.';
@@ -153,7 +162,6 @@ export async function POST(request: NextRequest) {
       }, { status: 400 });
     }
 
-    // Verificar se a chave da OpenAI está configurada
     if (!process.env.OPENAI_API_KEY) {
       return NextResponse.json({
         error: 'API Key não configurada',
@@ -171,7 +179,6 @@ export async function POST(request: NextRequest) {
     }
 
     try {
-      // Tentar gerar resposta com IA
       const aiResponse = await generateAIResponse(message.trim(), processos);
 
       return NextResponse.json({
@@ -184,7 +191,6 @@ export async function POST(request: NextRequest) {
     } catch (aiError) {
       console.error('Erro na IA, usando busca por similaridade como fallback:', aiError);
 
-      // Fallback para busca por similaridade
       const bestMatch = findBestMatch(message.trim(), processos);
 
       if (bestMatch) {
@@ -197,15 +203,15 @@ export async function POST(request: NextRequest) {
       } else {
         const defaultResponse = `Não encontrei uma resposta específica para sua pergunta sobre "${message}". 
 
-Aqui estão alguns tópicos que posso ajudar:
-• Como criar tarefa de alteração de arte
-• Prazos de produção de e-mail marketing  
-• Solicitar acesso ao Google Analytics (GA4)
-• Abrir chamados no suporte de TI
-• Solicitar férias
-• Configurar acesso VPN
+        Aqui estão alguns tópicos que posso ajudar:
+        • Como criar tarefa de alteração de arte
+        • Prazos de produção de e-mail marketing  
+        • Solicitar acesso ao Google Analytics (GA4)
+        • Abrir chamados no suporte de TI
+        • Solicitar férias
+        • Configurar acesso VPN
 
-Você pode reformular sua pergunta ou perguntar sobre algum desses tópicos específicos.`;
+        Você pode reformular sua pergunta ou perguntar sobre algum desses tópicos específicos.`;
 
         return NextResponse.json({
           answer: defaultResponse,
@@ -224,8 +230,3 @@ Você pode reformular sua pergunta ou perguntar sobre algum desses tópicos espe
     }, { status: 500 });
   }
 }
-
-
-// WIP: adicionar uma forma de toda pergunta que o assistente não souber responde, além de retornar uma mensagem padrão, ele adiciona em um arquivo new_processos.json e atualiza o arquivo processos.json com a nova pergunta e resposta
-// isso pode ser feito com um endpoint separado ou dentro do mesmo endpoint, mas com uma flag
-// que indica se é uma nova pergunta ou não. Assim, o assistente aprende com as novas perguntas e respostas.
