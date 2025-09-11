@@ -1,8 +1,9 @@
 {
   "metadata": {
     "versao": "2.0",
-    "ultima_atualizacao": "2025-09-10",
-    "total_processos": 10
+    "ultima_atualizacao": "2025-09-11",
+    "total_processos": 17,
+    "estrutura": "hibrida"
   },
 
   "ferramentas": {
@@ -39,6 +40,68 @@
           "tags": ["ga4", "google analytics", "acesso", "permissão", "analytics", "solicitar", "pedir"],
           "pergunta": "Como solicitar acesso ao GA4?",
           "resposta": "Para solicitar acesso ao Google Analytics 4 (GA4), envie um e-mail para **analytics@empresa.com** com as seguintes informações:\n\n**Informações necessárias:**\n1) Nome completo\n2) Departamento/área\n3) Cargo/função\n4) Justificativa para o acesso (projetos que utilizará)\n5) Nível de permissão necessário:\n   • Visualizador\n   • Editor\n   • Administrador\n\nO time de Analytics avaliará a solicitação em até **2 dias úteis** e enviará as instruções de acesso por e-mail."
+        }
+      ]
+    },
+    "google_ads": {
+      "nome": "Google Ads",
+      "descricao": "Gestão de campanhas de mídia paga no Google",
+      "categoria": "Mídia Paga",
+      "processos": [
+        {
+          "id": "consultar_saldo_google_ads",
+          "titulo": "Como consultar saldo no Google Ads",
+          "categoria": "Mídia Paga",
+          "tags": ["google ads", "saldo", "consultar", "faturamento", "crédito", "billing"],
+          "pergunta": "Como consultar o saldo disponível no Google Ads?",
+          "resposta": "Para consultar o saldo no Google Ads:\n\n**Passo a passo:**\n1) Acesse a conta do Google Ads\n2) Clique em **Faturamento > Resumo**\n3) Você verá o saldo atual e o histórico de cobranças\n\n**Informações disponíveis:**\n• Saldo atual da conta\n• Histórico de pagamentos\n• Próxima data de cobrança\n• Método de pagamento ativo"
+        },
+        {
+          "id": "verificar_campanha_ativa_google_ads",
+          "titulo": "Como verificar se a campanha está ativa no Google Ads",
+          "categoria": "Mídia Paga",
+          "tags": ["google ads", "campanha", "status", "ativa", "pausada", "qualificada"],
+          "pergunta": "Como saber se minha campanha está ativa no Google Ads?",
+          "resposta": "Para verificar o status da campanha:\n\n**Passo a passo:**\n1) Vá em **Campanhas** no menu lateral\n2) Veja a coluna **Status**:\n\n**Status possíveis:**\n• **Ativa / Qualificada** = rodando normalmente\n• **Pausada** = temporariamente interrompida\n• **Limitada** = com restrições (orçamento, aprovação, etc.)\n• **Removida** = campanha deletada\n\n**Dica:** Campanhas com status 'Limitada' precisam de atenção especial."
+        },
+        {
+          "id": "verificar_metricas_google_ads",
+          "titulo": "Como verificar métricas principais no Google Ads",
+          "categoria": "Mídia Paga",
+          "tags": ["google ads", "métricas", "resultados", "roas", "cpa", "investimento", "conversões"],
+          "pergunta": "Quais são as principais métricas para analisar no Google Ads?",
+          "resposta": "**Principais métricas que o cliente entende:**\n\n• **Valor convertido** = total em vendas que os anúncios geraram no site\n• **Valor conv./custo (ROAS)** = quanto retornou em vendas para cada R$1 investido\n• **Custo (investimento)** = quanto foi gasto nas campanhas no período\n• **CPA (custo por aquisição/conversão)** = quanto custou, em média, gerar cada venda\n\n📌 **Dica importante:** Sempre mostre comparativo com semana anterior ou 30 dias para dar contexto ao cliente."
+        },
+        {
+          "id": "verificar_resultados_gerais_google_ads",
+          "titulo": "Como verificar resultados gerais no Google Ads",
+          "categoria": "Mídia Paga",
+          "tags": ["google ads", "resultados", "conversões", "custo", "vendas", "relatórios"],
+          "pergunta": "Como ver os resultados gerais das campanhas no Google Ads?",
+          "resposta": "Para verificar os resultados gerais:\n\n**Principais colunas:**\n• **Conversões** = quantidade de vendas/leads gerados\n• **Custo por conversão** = quanto custou cada venda\n• **Valor de conversão** = faturamento gerado (se houver tag)\n\n💡 **Dica:** Sempre olhe a linha de **total geral** para passar visão consolidada ao cliente."
+        }
+      ]
+    },
+    "meta_ads": {
+      "nome": "Meta Ads",
+      "descricao": "Gestão de campanhas de mídia paga no Facebook e Instagram",
+      "categoria": "Mídia Paga",
+      "processos": [
+        {
+          "id": "consultar_saldo_meta_ads",
+          "titulo": "Como consultar saldo no Meta Ads",
+          "categoria": "Mídia Paga",
+          "tags": ["meta ads", "facebook ads", "instagram ads", "saldo", "consultar", "faturamento"],
+          "pergunta": "Como consultar o saldo disponível no Meta Ads?",
+          "resposta": "Para consultar o saldo no Meta Ads:\n\n**Passo a passo:**\n1) Acesse o **Gerenciador de Anúncios**\n2) Clique em **Faturamento** no menu lateral\n3) O saldo disponível aparecerá no topo\n\n**Informações disponíveis:**\n• Saldo atual da conta\n• Limite de gastos diários\n• Histórico de transações\n• Métodos de pagamento"
+        },
+        {
+          "id": "verificar_campanha_ativa_meta_ads",
+          "titulo": "Como verificar se a campanha está ativa no Meta Ads",
+          "categoria": "Mídia Paga",
+          "tags": ["meta ads", "facebook ads", "instagram ads", "campanha", "status", "ativa", "pausada"],
+          "pergunta": "Como saber se minha campanha está ativa no Meta Ads?",
+          "resposta": "Para verificar o status da campanha:\n\n**Passo a passo:**\n1) Entre no **Gerenciador de Anúncios**\n2) Vá até **Campanhas**\n3) Verifique o botão de status:\n\n**Status visuais:**\n• **Verde** = ativo e funcionando\n• **Cinza** = pausado\n• **Amarelo** = em análise\n• **Vermelho** = rejeitado/com problemas\n\n**Dica:** Campanhas em análise podem levar até 24h para aprovação."
         }
       ]
     },
@@ -129,12 +192,20 @@
   },
   "processos_gerais": [
     {
+      "id": "prompt_padrao_atendimento_midia",
+      "titulo": "Prompt padrão para atendimento de mídia paga",
+      "categoria": "Mídia Paga",
+      "tags": ["prompt", "atendimento", "mídia paga", "google ads", "meta ads", "resposta", "cliente", "template"],
+      "pergunta": "Como responder o cliente sobre campanhas de mídia paga?",
+      "resposta": "**Prompt padrão para atendimento:**\n\nOi [nome do cliente], tudo bem? 😊\nJá analisamos as campanhas e seguem os principais pontos da semana:\n\n📊 **Visão geral:** [explique de forma simples se houve crescimento, estabilidade ou queda].\n\n🚀 **Destaques positivos:** [coloque aqui os pontos que performaram bem, exemplo: campanha X trouxe boas conversões, aumento de acessos qualificados, redução de custo em Y].\n\n⚠️ **Pontos de atenção:** [cite aqui o que puxou o resultado para baixo, exemplo: queda na taxa de conversão, aumento do custo por venda, campanha limitada por orçamento].\n\n✅ **Resumo simples:** [traduza de forma leiga, ex: \"Estamos alcançando mais pessoas, mas proporcionalmente menos estão comprando\", ou \"Houve um aumento no custo de cada venda, mas isso é normal em períodos de ajuste\"].\n\n🔎 **Próximos passos:** [mostre o que a equipe de mídia fará, ex: otimização de orçamento, ajustes em segmentação, revisão do site].\n\nAssim, conseguimos dar clareza do que está acontecendo e garantir que estamos atuando para melhorar os resultados. Qualquer mudança significativa, mantemos você atualizado.\n\n**Como usar:**\n1) Consultar os pontos no Google Ads / Meta Ads\n2) Preencher os colchetes com os detalhes vistos no print\n3) Mandar o texto + print para o cliente"
+    },
+    {
       "id": "ferramentas",
       "titulo": "Ferramentas mais utilizadas na empresa",
       "categoria": "Ferramentas e Softwares",
       "tags": ["ferramentas", "utilizadas", "empresa", "softwares", "apps", "programas"],
       "pergunta": "Quais são as ferramentas mais utilizadas na empresa?",
-      "resposta": "As ferramentas mais utilizadas na empresa incluem:\n\n1) **Google Meet** - para videoconferências e reuniões online\n2) **Google Gmail** - para controle de e-mails internos e com clientes \n3) **Google Drive** - para armazenamento de arquivos e materiais em nuvem\n4) **Runrun.it** - para gestão de tarefas e projetos\n5) **Zintec** - para gerenciamento de Whatsapp e Clientes\n6) **Google Agenda** - para organizar reuniões e tarefas do dia"
+      "resposta": "As ferramentas mais utilizadas na empresa incluem:\n\n1) **Google Meet** - para videoconferências e reuniões online\n2) **Google Gmail** - para controle de e-mails internos e com clientes \n3) **Google Drive** - para armazenamento de arquivos e materiais em nuvem\n4) **Runrun.it** - para gestão de tarefas e projetos\n5) **Zintec** - para gerenciamento de Whatsapp e Clientes\n6) **Google Agenda** - para organizar reuniões e tarefas do dia\n7) **Google Ads** - para gestão de campanhas de mídia paga\n8) **Meta Ads** - para campanhas no Facebook e Instagram"
     }
   ]
 }

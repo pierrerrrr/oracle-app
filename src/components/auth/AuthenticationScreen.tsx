@@ -88,7 +88,7 @@ export function AuthenticationScreen() {
             Developed by <span className='text-primary'>pierrerrrr</span>
           </motion.p>
           <motion.p className='text-xs text-muted-foreground flex justify-center' initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}>
-            <a href="https://github.com/pierrerrrr" target='_blank'><Github /></a>
+            <a href="https://github.com/pierrerrrr/oracle-app" target='_blank'><Github /></a>
           </motion.p>
         </motion.div>
       </div>
